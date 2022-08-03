@@ -94,7 +94,9 @@ const SearchParams = () => {
             <option value="mediumorchid">Medium Orchid</option>
           </select>
         </label>
-        <button type="submit" style={{ backgroundColor: theme }}>Submit</button>
+        <button type="submit" style={{ backgroundColor: theme }}>
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </>

@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import Details from "./Details";
 import SearchParams from "./Search";
 import ThemeContext from "./Context";
+import { Redirect } from "react-router-dom";
 
 const App = () => {
   const theme = useState("darkblue");
@@ -18,6 +19,9 @@ const App = () => {
             </Route>
             <Route exact path="/">
               <SearchParams />
+            </Route>
+            <Route path="*">
+              <Redirect to="/" />
             </Route>
           </Switch>
         </Router>

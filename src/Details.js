@@ -2,6 +2,8 @@ import { Component } from "react";
 import { withRouter } from "react-router-dom";
 import ThemeContext from "./Context";
 import Carousel from "./Carousel";
+import { Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 class Details extends Component {
   state = { loading: true };
@@ -12,7 +14,7 @@ class Details extends Component {
     );
     const json = await res.json();
     this.setState(Object.assign({ loading: false }, json.pets[0]));
-  }
+}
 
   render() {
     if (this.state.loading) {
@@ -31,7 +33,11 @@ class Details extends Component {
 
     return (
       <div>
-        <Carousel images={images} />
+        <Route>
+          {!this.state.id
+          ? <Redirect to="/" />
+          : <>
+          <Carousel images={images} />
         <div className="item">
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
@@ -42,6 +48,9 @@ class Details extends Component {
             )}
           </ThemeContext.Consumer>
         </div>
+          </>
+        }
+        </Route>
       </div>
     );
   }
